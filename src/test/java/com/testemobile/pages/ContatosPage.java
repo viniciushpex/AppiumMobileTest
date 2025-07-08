@@ -56,4 +56,34 @@ public class ContatosPage {
             return false;
         }
     }
+
+    public boolean validarNome(String nome) throws InterruptedException {
+        Thread.sleep(2000);
+        try {
+            WebElement nomeElemento = driver.findElement(MobileBy.xpath("//android.widget.TextView[@content-desc='Nome']"));
+            return nomeElemento.getText().equals(nome);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean validarSobrenome(String sobrenome) throws InterruptedException {
+        Thread.sleep(2000);
+        try {
+            WebElement sobrenomeElemento = driver.findElement(MobileBy.xpath("//android.widget.TextView[@content-desc='Sobrenome']"));
+            return sobrenomeElemento.getText().equals(sobrenome);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean validarTelefone(String telefone) throws InterruptedException {
+        Thread.sleep(2000);
+        try {
+            WebElement telefoneElemento = driver.findElement(MobileBy.xpath("//android.widget.TextView[@content-desc='Telefone']"));
+            return telefoneElemento.getText().equals(telefone);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
