@@ -8,3 +8,6 @@ Feature: Criar novo contato
     And preencho o telefone "+5511999998888"
     And salvo o contato
     Then o contato deve ser salvo com sucesso
+    And o nome do contato deve ser "NomeTeste"
+    And o sobrenome do contato deve ser "SobrenomeTeste"
+    And o telefone do contato deve ser "+5511999998888"
