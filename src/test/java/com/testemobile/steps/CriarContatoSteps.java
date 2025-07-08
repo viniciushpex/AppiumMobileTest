@@ -4,14 +4,17 @@ import com.testemobile.pages.ContatosPage;
 import com.testemobile.support.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.pt.*;
+import io.appium.java_client.android.AndroidDriver;
 
 public class CriarContatoSteps {
 
     private ContatosPage contatos;
+    private AndroidDriver driver;
 
     @Dado("que o aplicativo de contatos está aberto")
     public void abrirAppContatos() throws Exception {
-        contatos = new ContatosPage(DriverFactory.iniciarDriver());
+        driver = DriverFactory.iniciarDriver();
+        contatos = new ContatosPage(driver);
         // Aguarda o carregamento
         Thread.sleep(2000);
     }
@@ -46,9 +49,26 @@ public class CriarContatoSteps {
         contatos.validarContatoSalvo();
     }
 
+    @E("o nome do contato deve ser {string}")
+    public void validarNome(String nome) throws InterruptedException {
+        contatos.validarNome(nome);
+    }
+
+    @E("o sobrenome do contato deve ser {string}")
+    public void validarSobrenome(String sobrenome) throws InterruptedException {
+        contatos.validarSobrenome(sobrenome);
+    }
+
+    @E("o telefone do contato deve ser {string}")
+    public void validarTelefone(String telefone) throws InterruptedException {
+        contatos.validarTelefone(telefone);
+    }
+
     @After
     public void finalizar() {
         DriverFactory.encerrarDriver();
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
